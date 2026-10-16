@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fotos del recuerdo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Caveat:wght@500;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--g:#0d9488;--gd:#134e4a;--tx:#10303a;--mu:#587480;--bd:#cfe9e6}
+*{box-sizing:border-box}
+body{margin:0;padding-top:52px;color:var(--tx);font:15px/1.4 Poppins,"Segoe UI",system-ui,Arial,sans-serif;min-height:100vh;background:linear-gradient(180deg,#0f2a4a 0,#1d5a7a 22%,#2fa4a0 52%,#f3b562 80%,#fde3b0 100%) fixed}
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,#fff 1.5px,transparent 2.5px),radial-gradient(circle,#ffe58a 2px,transparent 3px);background-size:140px 140px,210px 210px;background-position:20px 30px,90px 110px;animation:tw 4s ease-in-out infinite alternate}@keyframes tw{from{opacity:.3}to{opacity:.9}}
+button,input,textarea{font:inherit}
+#app{max-width:1100px;margin:0 auto;padding:22px 18px 150px}
+.bn{position:fixed;top:0;left:0;right:0;z-index:70;background:linear-gradient(135deg,#0e4a6b,#0d9488);color:#fff;font-weight:800;letter-spacing:1.2px;font-size:16px;padding:8px 12px;box-shadow:0 3px 10px rgba(0,60,20,.18);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 12px}
+.bn:after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:6px;background:linear-gradient(90deg,#e11d48,#f58a07,#facc15,#10a43a,#2563eb,#7c3aed)}
+.bl{position:absolute;left:12px;top:50%;transform:translateY(-50%);display:flex;gap:8px}
+.bt2{text-align:center}
+.vb{background:#fff;color:var(--gd);text-decoration:none;font-size:13px;font-weight:800;padding:6px 14px;border:0;border-radius:20px;cursor:pointer;white-space:nowrap;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+h1{margin:10px 0 4px;text-align:center;font:700 clamp(32px,7vw,52px)/1.05 Fredoka,Poppins,sans-serif;color:#fff;text-shadow:0 3px 0 #0f766e,0 8px 18px rgba(0,0,0,.35)}
+.sub{text-align:center;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.35);margin:0 0 24px;font-weight:700;font-size:17px}
+.sg{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:600px;margin:0 auto}
+.sd{display:flex;align-items:center;gap:14px;border:0;border-radius:22px;padding:20px;color:#fff;cursor:pointer;text-align:left;background:var(--c);box-shadow:0 6px 0 rgba(0,0,0,.22);transition:.15s;font-weight:800;font-size:17px}
+.sd:hover{transform:translateY(-3px)}.sd i{width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;flex:none}
+.sd small{display:block;font-weight:600;opacity:.9;font-size:12px}
+.tb{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.chip{border-radius:22px;padding:7px 16px;font-weight:800;color:#fff;background:var(--c);box-shadow:0 3px 0 rgba(0,0,0,.2)}
+.bt{border:0;border-radius:14px;padding:9px 16px;font-weight:700;color:#fff;background:var(--g);cursor:pointer;box-shadow:0 3px 0 #0b5e57}
+.bt.w{background:#fff;color:var(--tx);box-shadow:0 3px 0 rgba(0,0,0,.18);border:2px solid var(--bd)}.bt.r{background:#e11d48;box-shadow:0 3px 0 #9f1239}.bt:disabled{opacity:.6;cursor:wait}
+.mbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fff8d6;border:2px dashed #e5b800;border-radius:14px;padding:8px 14px;margin-bottom:18px;font-weight:700;font-size:13px;color:#7a5d00}.mbar .sp{flex:1}
+.mbtn{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:6px;border:0;border-radius:24px;padding:10px 16px;background:#111827;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}.mbtn svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2}
+.wall{column-count:3;column-gap:22px;padding-top:6px}
+.nt{position:relative;break-inside:avoid;margin:0 0 22px;padding:20px 18px 14px;background:var(--n);border-radius:4px 4px 18px 4px;box-shadow:0 8px 14px rgba(0,0,0,.18);transform:rotate(var(--r));transition:.2s;font-family:Caveat,cursive;font-size:21px;line-height:1.2}
+.nt:hover{transform:rotate(0) scale(1.03);z-index:2}
+.nt:before{content:'';position:absolute;top:-9px;left:50%;width:62px;height:18px;margin-left:-31px;background:rgba(255,255,255,.6);box-shadow:0 1px 3px rgba(0,0,0,.15);transform:rotate(-3deg)}
+.nt.big{font-size:23px;padding-top:26px}.nt.sh{font-size:30px;text-align:center;font-weight:700}
+.nt h4{margin:0 0 6px;font:700 17px/1.2 Fredoka,sans-serif;color:#13302a}
+.nt p{margin:0;white-space:pre-wrap;word-wrap:break-word}
+.nt img{width:100%;border-radius:6px;margin-top:10px;border:4px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.by{margin-top:10px;text-align:right;font-weight:700;color:#3a4a44}
+.dl{display:grid;place-items:center;padding:0;position:absolute;top:4px;right:4px;border:0;background:#e11d48;color:#fff;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:14px}
+.st,.emp,.nr{background:rgba(255,255,255,.9);border-radius:18px;padding:26px;text-align:center;font-weight:600;max-width:520px;margin:20px auto}
+.ld:after{content:'...';animation:dt 1.2s steps(4) infinite}@keyframes dt{0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}}
+.md{display:none;position:fixed;inset:0;z-index:100;background:rgba(10,30,20,.55);align-items:center;justify-content:center;padding:14px}
+.mc{position:relative;background:#fff;border-radius:20px;border-top:8px solid var(--c);padding:22px 20px 18px;width:100%;max-width:460px;max-height:90vh;overflow:auto;box-shadow:0 14px 40px rgba(0,0,0,.35)}.mc.wd{max-width:640px}
+.mc h3{margin:0 0 10px;font:700 22px Fredoka,sans-serif}.mc label{display:block;font-weight:700;font-size:13px;margin-top:12px;color:var(--mu)}
+.mc input,.mc textarea,.mc select{width:100%;margin-top:4px;padding:10px 12px;border:2px solid var(--bd);border-radius:12px;color:var(--tx)}.mc textarea{min-height:130px;resize:vertical}
+.mc .x{position:absolute;top:10px;right:10px;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:#e2f3f1;color:#134e4a;display:grid;place-items:center;cursor:pointer}.mc .x:hover{background:#e11d48;color:#fff}.mc h3{padding-right:40px}
+.ds{color:var(--mu);margin:6px 0}.ms{min-height:20px;margin-top:10px;font-weight:700;font-size:13px;color:#e11d48}.ms.ld{color:var(--mu)}
+.fx{display:flex;gap:10px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}.cnt{text-align:right;font-size:12px;color:var(--mu)}
+.pw{display:flex;gap:6px}.pw button{border:0;background:#eef5f0;border-radius:10px;padding:0 12px;cursor:pointer;margin-top:4px;font-weight:700}
+.pn{border:2px solid var(--bd);border-radius:14px;padding:12px;margin-top:12px}.pn .hd{display:flex;gap:8px;align-items:center;margin-bottom:6px;font-size:12.5px;color:var(--mu);font-weight:700}
+.pn .tx{white-space:pre-wrap;font-size:14.5px}.pn .fx{margin-top:10px}
+.cta{display:flex;align-items:center;gap:14px;border:0;border-radius:40px;padding:14px 30px 14px 16px;cursor:pointer;color:#4a2300;font:700 22px/1.1 Fredoka,sans-serif;text-align:left;background:linear-gradient(135deg,#ffe066,#ffb703 55%,#fb8500);box-shadow:0 7px 0 #b45309,0 14px 26px rgba(255,170,0,.45);animation:pul 2.2s ease-in-out infinite;transition:transform .15s}
+.cta small{display:block;font:600 12px Poppins,sans-serif;opacity:.8;margin-top:3px}
+.cta .pen{width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:26px;flex:none;box-shadow:inset 0 0 0 3px rgba(251,133,0,.35)}
+.cta:hover{transform:translateY(-3px) scale(1.03)}.cta:active{transform:translateY(3px)}
+@keyframes pul{0%,100%{box-shadow:0 7px 0 #b45309,0 14px 26px rgba(255,170,0,.45)}50%{box-shadow:0 7px 0 #b45309,0 14px 46px rgba(255,214,0,.95)}}
+.mus{position:fixed;left:16px;bottom:16px;z-index:60;border:0;border-radius:24px;padding:10px 16px;background:rgba(255,255,255,.92);color:var(--gd);font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.tb{justify-content:center;margin:6px 0 20px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:6px 0 14px}
+.fc{border:2px solid #fff;border-radius:22px;padding:6px 14px;font-weight:700;font-size:13px;cursor:pointer;background:rgba(255,255,255,.92);color:var(--tx)}.fc.on{background:var(--c);color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.rt{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.rt select,.srch input{border:2px solid #fff;border-radius:20px;padding:7px 12px;background:rgba(255,255,255,.95);color:var(--tx);font-size:13px}.srch input{width:170px}
+#cnt{color:#fff;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.4);margin-bottom:12px}
+.by small{display:block;font:600 12px Poppins,sans-serif;opacity:.7}
+#wall .pl{position:relative;break-inside:avoid;margin:0 0 24px;background:#fff;padding:12px 12px 10px;border-radius:3px;box-shadow:0 8px 16px rgba(0,0,0,.28);transform:rotate(var(--r));transition:.2s;cursor:pointer}
+#wall .pl:hover{transform:rotate(0) scale(1.03);z-index:2}
+#wall .pl:before{content:'';position:absolute;top:-9px;left:50%;width:62px;height:18px;margin-left:-31px;background:rgba(255,235,170,.75);box-shadow:0 1px 3px rgba(0,0,0,.15);transform:rotate(-3deg);z-index:1}
+.ph{background:#e8eef0;min-height:110px;display:grid;place-items:center;overflow:hidden}.ph img{display:block;width:100%;height:auto}.ph.bad:after{content:'Foto no disponible';color:#6b7c85;font-size:13px;padding:34px 10px}
+.cap{font-family:Caveat,cursive;font-size:21px;line-height:1.15;padding-top:10px;color:#2a2a2a}.cap p{margin:0 0 4px;white-space:pre-wrap;word-wrap:break-word}.cap .by{margin-top:6px;font-size:19px}
+.big{width:100%;border-radius:8px;display:block;margin-top:10px}
+.lk{display:flex;gap:8px;align-items:center}.lk input{flex:1;min-width:0}.lk .bt{white-space:nowrap;text-decoration:none;display:inline-block;margin-top:4px;padding:10px 14px}
+.pv{display:none;margin-top:8px}.pv img{max-width:100%;max-height:180px;border-radius:8px}
+@media(max-width:900px){.rt{margin-left:0;width:100%}.srch{flex:1}.srch input{width:100%}}
+@media(max-width:900px){.bl{position:static;transform:none;width:100%;justify-content:flex-start}.bt2{width:100%}}
+@media(max-width:860px){.wall{column-count:2}}
+@media(max-width:600px){.cta{width:100%}.wall{column-count:1}.sg{grid-template-columns:1fr}.bn{font-size:13px}}
+</style></head><body>
+<div class="bn"><div class="bl"><a id="cl" class="vb" href="https://capacitacion3vesmartin-ves.github.io/campuscapacitacion/">← Volver al campus</a><span id="bi"></span></div><span class="bt2">FOTOS DEL RECUERDO</span></div>
+<div id="app"></div>
+<button id="mbtn" class="mbtn" data-a="master"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>Master</button>
+<button id="mus" class="mus" data-a="mus">Música</button>
+<div id="md" class="md"></div>
+<script>
+/* Pega aquí la URL del Apps Script de FOTOS (termina en /exec). */
+const URL_API='https://script.google.com/macros/s/AKfycbwBfBvZ9gwz_cQ2mmME89-qp5YQy7jgXSVpur-1FseWmUmLKuDZ_hWc1CpC1QLhrd9ASA/exec';
+const SEDES=[['Villa el Salvador','#db2777'],['Puente Piedra','#7c3aed'],['Arequipa','#ea580c'],['Piura','#0d9488']];
+const NC=['#fff3a3','#ffc9d9','#c9e7ff','#d3f5c2','#ffd9b0','#e3d4ff'];
+const $=s=>document.querySelector(s),E=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const okUrl=u=>/^https?:\/\//i.test(String(u||'').trim());
+const hash=s=>[...String(s)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
+let SEDE=null,ITEMS=[],PEND=[],ST='idle',TK='',MSEDE='';
+try{TK=sessionStorage.getItem('fo_tk')||''}catch(e){}
+const MASTER=()=>!!TK;
+const sedeCol=()=>(SEDES.find(s=>s[0]==SEDE)||[0,'#0f766e'])[1];
+const colDe=n=>(SEDES.find(s=>s[0]==n)||[0,'#555'])[1];
+
+async function api(p){
+ if(!URL_API||URL_API.startsWith('PEGA'))throw new Error('Falta conectar la base de datos (URL del Apps Script).');
+ let j;try{const r=await fetch(URL_API,{method:'POST',body:JSON.stringify(p)});j=await r.json()}catch(e){throw new Error('No hay conexión con el servidor. Intenta de nuevo.')}
+ if(!j.ok){if(j.codigo=='SESION')salir(true);throw new Error(j.error||'Error del servidor')}
+ return j}
+function modal(h,col,wide){const m=$('#md');m.innerHTML='<div class="mc'+(wide?' wd':'')+'" style="--c:'+(col||'#0f766e')+'">'+h+'</div>';m.style.display='flex'}
+function cerrar(){$('#md').style.display='none';$('#md').innerHTML=''}
+function msg(t,ld){const m=$('#mm');if(m){m.textContent=t;m.className='ms'+(ld?' ld':'')}}
+const busy=b=>document.querySelectorAll('#md .fx .bt').forEach(x=>x.disabled=b);
+const X='<button class="x" data-a="cerrar" aria-label="Cerrar"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg></button>';
+const IS='width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"';
+const TRS='<svg viewBox="0 0 24 24" '+IS+'><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/></svg>';
+const PEN='<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+const MSV='<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align:-3px;margin-right:4px"><path d="M9 3v11.3A3.5 3.5 0 1 0 11 17.5V7h6V3z"/></svg>';
+const nrm=t=>String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+let FIL='Todas',ORD='rec',Q='';
+function ts(x){const m=/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}))?/.exec(x.fecha||'');if(m)return new Date(+m[3],+m[2]-1,+m[1],+(m[4]||0),+(m[5]||0)).getTime();const d=Date.parse(x.fecha);return isNaN(d)?0:d}
+function lista(){const q=nrm(Q);return ITEMS.filter(x=>(FIL=='Todas'||x.sede==FIL)&&(!q||nrm([x.descripcion,x.nombre,x.sede].join(' ')).includes(q))).sort((a,b)=>ORD=='rec'?ts(b)-ts(a):ts(a)-ts(b))}
+
+const MESC=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function fchip(d){const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||'');return m?(+m[3])+' '+MESC[+m[2]-1]+' '+m[1]:''}
+function nota(x){const h=hash(x.id),fd=fchip(x.fecha_foto);
+ return '<div class="pl" style="--r:'+(((h%7)-3)*.7)+'deg" data-a="ver" data-id="'+E(x.id)+'">'
+ +(MASTER()&&x.sede==MSEDE?'<button class="dl" data-a="borrar" data-id="'+E(x.id)+'" title="Borrar">'+TRS+'</button>':'')
+ +'<div class="ph"><img src="'+E(x.foto)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add(\'bad\');this.remove()"></div>'
+ +'<div class="cap">'+(x.descripcion?'<p>'+E(x.descripcion)+'</p>':'')+'<div class="by">'+E(x.nombre||'Anónimo')+'<small>'+E(x.sede)+(fd?' · '+E(fd):'')+'</small></div></div></div>'}
+const barra=()=>'<div class="mbar">Modo master ('+E(MSEDE)+')<span class="sp"></span><button class="bt" data-a="pend">Ver pendientes</button><button class="bt w" data-a="salir">Salir de master</button></div>';
+
+function ajb(){const b=$('.bn');if(b)document.body.style.paddingTop=(b.offsetHeight+10)+'px'}
+addEventListener('resize',ajb);addEventListener('load',ajb);
+function pintaMuro(){const L=lista(),w=$('#wall');if(!w)return;
+ $('#cnt').textContent=L.length+(L.length==1?' foto':' fotos');w.className=L.length?'wall':'';
+ w.innerHTML=L.length?L.map(nota).join(''):'<div class="nr">'+(ITEMS.length?'No se encontraron fotos con esos filtros.':'Aún no hay fotos publicadas.<br>¡Sé el primero en subir una!')+'</div>'}
+function R(){const a=$('#app');$('#mbtn').style.display=MASTER()?'none':'flex';
+ let h='<h1>Fotos del recuerdo</h1><p class="sub">Momentos que queremos recordar siempre </p>'
+ +'<div class="tb"><button class="cta" data-a="nueva"><span class="pen">'+PEN+'</span><span>Sube tu foto<small>Comparte un momento para recordar</small></span></button></div>'+(MASTER()?barra():'');
+ if(ST=='load')h+='<div class="st ld">Cargando fotos</div>';
+ else if(ST=='err')h+='<div class="st">No se pudieron cargar las fotos.<br><br><button class="bt" data-a="reint">Reintentar</button></div>';
+ else h+='<div class="ctl">'+[['Todas','#0f766e']].concat(SEDES).map(s=>'<button class="fc'+(FIL==s[0]?' on':'')+'" style="--c:'+s[1]+'" data-a="fil" data-v="'+E(s[0])+'">'+E(s[0])+'</button>').join('')
+  +'<div class="rt"><select id="ord"><option value="rec"'+(ORD=='rec'?' selected':'')+'>Más recientes</option><option value="ant"'+(ORD=='ant'?' selected':'')+'>Más antiguas</option></select>'
+  +'<div class="srch"><input id="q" type="search" placeholder="Buscar foto…" value="'+E(Q)+'" autocomplete="off"></div></div></div><div id="cnt"></div><div id="wall"></div>';
+ a.innerHTML=h;pintaMuro();ajb()}
+async function cargar(sil){if(!sil){ST='load';R()}
+ try{const rs=await Promise.all(SEDES.map(s=>api({accion:'listar',sede:s[0]})));ITEMS=[].concat(...rs.map(j=>j.items||[]));ST='ok'}catch(e){ST='err';if(sil)alert(e.message)}R()}
+
+/* ===== Asesor: escribir historia ===== */
+function nueva(){modal(X+'<h3>Sube tu foto</h3><p class="ds">Comparte una foto para recordar. Será revisada por un supervisor antes de publicarse.</p>'
+ +'<label>Tu sede<select id="fsd"><option value="">Elige tu sede…</option>'+SEDES.map(s=>'<option>'+E(s[0])+'</option>').join('')+'</select></label>'
+ +'<label>Tu nombre (o escribe «Anónimo»)<input id="fn" maxlength="60" placeholder="Ej. Ana Quispe"></label>'
+ +'<label>Enlace de tu foto<div class="lk"><input id="ff" placeholder="https://..."><a class="bt" href="https://www.image2url.com/es/dashboard" target="_blank" rel="noopener">Subir foto</a></div></label>'
+ +'<p class="ds" style="font-size:12.5px">1) Pulsa «Subir foto» y sube tu imagen. 2) Copia el enlace que te dan. 3) Pégalo aquí.</p><div id="fv" class="pv"></div>'
+ +'<label>Descripción (opcional)<textarea id="fds" maxlength="200" style="min-height:70px" placeholder="Ej. Celebrando el cumpleaños del equipo"></textarea></label>'
+ +'<label>Fecha de la foto (opcional)<input id="fd" type="date"></label><div id="mm" class="ms"></div>'
+ +'<div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="enviar">Enviar foto</button></div>','#0f766e')}
+function prev(){const i=$('#ff'),v=$('#fv');if(!i||!v)return;const u=i.value.trim();if(okUrl(u)){v.style.display='block';v.innerHTML='<img src="'+E(u)+'" alt="Vista previa" referrerpolicy="no-referrer" onerror="this.parentNode.style.display=\'none\'">'}else{v.style.display='none';v.innerHTML=''}}
+async function enviar(){const sd=$('#fsd').value,n=$('#fn').value.trim(),f=$('#ff').value.trim(),d=$('#fds').value.trim(),dt=$('#fd').value;
+ if(!sd){msg('Elige tu sede.');return}if(!n){msg('Escribe tu nombre o «Anónimo».');return}
+ if(!f){msg('Pega el enlace de tu foto.');return}if(!okUrl(f)){msg('El enlace debe empezar con http:// o https://');return}
+ msg('Enviando',true);busy(true);
+ try{await api({accion:'enviar',sede:sd,nombre:n,foto:f,descripcion:d,fecha_foto:dt});
+  modal(X+'<h3>¡Gracias por compartir! </h3><p class="ds">Tu foto quedó <b>pendiente de aprobación</b>. Cuando un supervisor la apruebe, aparecerá en el álbum.</p><div class="fx"><button class="bt" data-a="cerrar">Listo</button></div>','#0f766e')}
+ catch(e){busy(false);msg(e.message)}}
+function ver(id){const x=ITEMS.find(y=>y.id==id);if(!x)return;const fd=fchip(x.fecha_foto);
+ modal(X+'<h3>'+E(x.nombre||'Anónimo')+'</h3><div class="ds">'+E(x.sede)+(fd?' · '+E(fd):'')+'</div><img class="big" src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer">'+(x.descripcion?'<p style="white-space:pre-wrap;margin:10px 0 0">'+E(x.descripcion)+'</p>':'')
+  +'<div class="fx"><a class="bt w" style="text-decoration:none" href="'+E(x.foto)+'" target="_blank" rel="noopener noreferrer">Abrir en pantalla completa</a></div>',colDe(x.sede),true)}
+
+/* ===== Master ===== */
+function loginM(){modal(X+'<h3>Acceso master</h3><label>Clave<div class="pw"><input id="mp" type="password" autocomplete="new-password" placeholder="Clave"><button type="button" data-a="ojo">Ver</button></div></label><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="entrar">Ingresar</button></div>','#111827');setTimeout(()=>{const i=$('#mp');if(i)i.focus()},50)}
+async function entrar(){const v=$('#mp').value;if(!v){msg('Escribe la clave.');return}msg('Confirmando credenciales',true);busy(true);
+ try{const j=await api({accion:'login',clave:v});TK=j.token;MSEDE=j.sede;try{sessionStorage.setItem('fo_tk',TK);sessionStorage.setItem('fo_ms',MSEDE)}catch(e){}cerrar();R()}
+ catch(e){busy(false);msg(e.message)}}
+function salir(sil){if(TK&&!sil)api({accion:'logout',token:TK}).catch(()=>{});TK='';MSEDE='';try{sessionStorage.removeItem('fo_tk');sessionStorage.removeItem('fo_ms')}catch(e){}cerrar();R();if(sil)alert('Tu sesión master venció. Ingresa de nuevo.')}
+try{MSEDE=sessionStorage.getItem('fo_ms')||''}catch(e){}
+
+async function pend(){modal(X+'<h3>Fotos pendientes</h3><div class="st ld">Cargando</div>','#111827',true);
+ try{const j=await api({accion:'pendientes',token:TK});PEND=j.items||[];pintaPend()}catch(e){modal(X+'<h3>Pendientes</h3><p class="ds">'+E(e.message)+'</p>','#111827')}}
+function pintaPend(){modal(X+'<h3>Fotos pendientes ('+PEND.length+')</h3>'+(PEND.length?PEND.map(x=>{const fd=fchip(x.fecha_foto);return '<div class="pn"><div class="hd"><span class="chip" style="--c:'+colDe(x.sede)+';padding:2px 10px;font-size:12px">'+E(x.sede)+'</span>'+E(x.nombre||'Anónimo')+' · '+E(x.fecha)+'</div>'
+ +'<img src="'+E(x.foto)+'" alt="" style="width:100%;max-width:280px;border-radius:8px;display:block" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=ds>No se pudo cargar la foto (revisa el enlace).</div>\'">'
+ +(x.descripcion?'<div class="tx" style="margin-top:6px">'+E(x.descripcion)+'</div>':'')+(fd?'<div class="ds">Fecha de la foto: '+E(fd)+'</div>':'')
+ +'<div class="fx"><button class="bt r" data-a="borrar" data-id="'+E(x.id)+'">Borrar</button><button class="bt" data-a="aprobar" data-id="'+E(x.id)+'">Aprobar</button></div></div>'}).join(''):'<p class="ds">No hay fotos pendientes. </p>')+'<div id="mm" class="ms"></div>','#111827',true)}
+async function aprobar(id){msg('Aprobando',true);busy(true);
+ try{await api({accion:'aprobar',token:TK,id});PEND=PEND.filter(x=>x.id!=id);pintaPend();cargar(true)}catch(e){busy(false);msg(e.message)}}
+const buscaId=id=>PEND.find(x=>x.id==id)||ITEMS.find(x=>x.id==id);
+function borrar(id){const x=buscaId(id);if(!x)return;
+ modal(X+'<h3>¿Borrar esta foto?</h3><p class="ds">Foto de <b>'+E(x.nombre||'Anónimo')+'</b>'+(x.descripcion?': «'+E(x.descripcion.slice(0,80))+'»':'')+'</p><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt r" data-a="borrar2" data-id="'+E(id)+'">Sí, borrar</button></div>','#e11d48')}
+function borrar2(id){modal(X+'<h3>Última confirmación</h3><p class="ds">Esta foto se eliminará <b>definitivamente</b> y no se podrá recuperar. ¿Seguro que deseas borrarla?</p><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">No, conservar</button><button class="bt r" data-a="borrar3" data-id="'+E(id)+'">Borrar definitivamente</button></div>','#9f1239')}
+async function borrar3(id){msg('Borrando',true);busy(true);
+ try{await api({accion:'borrar',token:TK,id});PEND=PEND.filter(x=>x.id!=id);ITEMS=ITEMS.filter(x=>x.id!=id);cerrar();R()}catch(e){busy(false);msg(e.message)}}
+
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t){if(e.target.id=='md')cerrar();return}
+ const a=t.dataset.a,id=t.dataset.id;
+ if(a=='fil'){FIL=t.dataset.v;R()}
+ else if(a=='reint')cargar();else if(a=='nueva')nueva();else if(a=='enviar')enviar();else if(a=='cerrar')cerrar();
+ else if(a=='mus')toggleMus();else if(a=='master')loginM();else if(a=='entrar')entrar();else if(a=='salir')salir();
+ else if(a=='ojo'){const i=$('#mp');i.type=i.type=='password'?'text':'password'}
+ else if(a=='ver')ver(id);else if(a=='pend')pend();else if(a=='aprobar')aprobar(id);else if(a=='borrar')borrar(id);else if(a=='borrar2')borrar2(id);else if(a=='borrar3')borrar3(id)});
+document.addEventListener('input',e=>{if(e.target.id=='ff')prev();if(e.target.id=='q'){Q=e.target.value.trim();pintaMuro()}if(e.target.id=='fh')$('#ct').textContent=e.target.value.length});
+document.addEventListener('change',e=>{if(e.target.id=='ord'){ORD=e.target.value;pintaMuro()}});
+document.addEventListener('keydown',e=>{if(e.key=='Escape')cerrar();if(e.key=='Enter'&&e.target.id=='mp')$('[data-a="entrar"]').click()});
+/* ===== Música de piano suave (sintetizada, sin archivos) ===== */
+const CH=[[261.63,329.63,392,523.25,392,329.63],[246.94,293.66,392,493.88,392,293.66],[220,261.63,329.63,440,329.63,261.63],[174.61,220,261.63,349.23,261.63,220]],ML=[659.25,587.33,523.25,698.46];
+let AC=null,OUT=null,NT=0,ST2=0,TM=null,MON=false,MOFF=false;
+try{MOFF=localStorage.getItem('hi_mus')=='off'}catch(e){}
+function pno(f,t,d,v){const o=AC.createOscillator(),o2=AC.createOscillator(),g=AC.createGain(),g2=AC.createGain();o.type='sine';o2.type='triangle';o.frequency.value=f;o2.frequency.value=f*2;g2.gain.value=.18;
+ g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+ o.connect(g);o2.connect(g2);g2.connect(g);g.connect(OUT);o.start(t);o2.start(t);o.stop(t+d+.1);o2.stop(t+d+.1)}
+function sched(){while(NT<AC.currentTime+1.2){const c=CH[Math.floor(ST2/6)%4],i=ST2%6;
+  pno(c[i],NT,3.2,.11);if(i==0)pno(c[0]/2,NT,5,.13);if(i==3)pno(ML[Math.floor(ST2/6)%4],NT+.37,3.5,.07);NT+=.75;ST2++}}
+function startMus(){if(MOFF||MON)return;try{if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();const m=AC.createGain();m.gain.value=.7;m.connect(AC.destination);
+  const cv=AC.createConvolver(),n=AC.sampleRate*2.8,b=AC.createBuffer(2,n,AC.sampleRate);for(let c=0;c<2;c++){const d=b.getChannelData(c);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.5)}
+  cv.buffer=b;const w=AC.createGain();w.gain.value=.55;OUT=AC.createGain();OUT.connect(m);OUT.connect(cv);cv.connect(w);w.connect(m);NT=AC.currentTime+.2}
+ AC.resume();MON=true;if(!TM)TM=setInterval(sched,250);musUi()}catch(e){}}
+function stopMus(){MON=false;if(AC)AC.suspend();musUi()}
+function musUi(){$('#mus').innerHTML=MSV+(MON?'Música: ON':'Música: OFF')}
+function toggleMus(){if(MON){MOFF=true;stopMus()}else{MOFF=false;startMus()}try{localStorage.setItem('hi_mus',MOFF?'off':'on')}catch(e){}}
+document.addEventListener('click',function f(){startMus();document.removeEventListener('click',f)},{once:true});
+document.addEventListener('visibilitychange',()=>{if(!AC)return;if(document.hidden)AC.suspend();else if(MON)AC.resume()});
+musUi();
+cargar();
+</script></body></html>
