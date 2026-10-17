@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fotos del recuerdo</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fotos del recuerdo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Caveat:wght@500;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--g:#0d9488;--gd:#134e4a;--tx:#10303a;--mu:#587480;--bd:#cfe9e6}
@@ -137,58 +137,43 @@ async function cargar(sil){if(!sil){ST='load';R()}
  try{const rs=await Promise.all(SEDES.map(s=>api({accion:'listar',sede:s[0]})));ITEMS=[].concat(...rs.map(j=>j.items||[]));ST='ok'}catch(e){ST='err';if(sil)alert(e.message)}R()}
 
 /* ===== Asesor: escribir historia ===== */
-function nueva(){modal(X+'<h3>Sube tu foto</h3><p class="ds">Comparte una foto para recordar. Será revisada por un supervisor antes de publicarse.</p>'
+function nueva(){FOTO='';modal(X+'<h3>Sube tu foto</h3><p class="ds">Comparte una foto para recordar. Será revisada por un supervisor antes de publicarse.</p>'
  +'<label>Tu sede<select id="fsd"><option value="">Elige tu sede…</option>'+SEDES.map(s=>'<option>'+E(s[0])+'</option>').join('')+'</select></label>'
  +'<label>Tu nombre (o escribe «Anónimo»)<input id="fn" maxlength="60" placeholder="Ej. Ana Quispe"></label>'
- +'<label>Enlace de tu foto<div class="lk"><input id="ff" placeholder="https://..."><a class="bt" href="https://www.image2url.com/es/dashboard" target="_blank" rel="noopener">Subir foto</a></div></label>'
- +'<p class="ds" style="font-size:12.5px">1) Pulsa «Subir foto» y sube tu imagen. 2) Copia el enlace que te dan. 3) Pégalo aquí.</p><div id="fv" class="pv"></div>'
+ +'<label>Tu foto</label><input id="fi" type="file" accept="image/*" style="display:none">'
+ +'<button type="button" class="bt w" id="fbtn" data-a="elegir" style="width:100%;margin-top:4px">📷 Elegir o tomar foto</button>'
+ +'<div id="fv" class="pv"></div>'
  +'<label>Descripción (opcional)<textarea id="fds" maxlength="200" style="min-height:70px" placeholder="Ej. Celebrando el cumpleaños del equipo"></textarea></label>'
  +'<label>Fecha de la foto (opcional)<input id="fd" type="date"></label><div id="mm" class="ms"></div>'
  +'<div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="enviar">Enviar foto</button></div>','#0f766e')}
-function prev(){const i=$('#ff'),v=$('#fv');if(!i||!v)return;const u=i.value.trim();if(okUrl(u)){v.style.display='block';v.innerHTML='<img src="'+E(u)+'" alt="Vista previa" referrerpolicy="no-referrer" onerror="this.parentNode.style.display=\'none\'">'}else{v.style.display='none';v.innerHTML=''}}
-async function enviar(){const sd=$('#fsd').value,n=$('#fn').value.trim(),f=$('#ff').value.trim(),d=$('#fds').value.trim(),dt=$('#fd').value;
+let FOTO='';
+function prev(){}
+function comprimir(file){return new Promise((ok,no)=>{const fr=new FileReader();fr.onerror=()=>no(new Error('No se pudo leer la imagen'));
+ fr.onload=()=>{const im=new Image();im.onerror=()=>no(new Error('El archivo no es una imagen válida'));
+  im.onload=()=>{const M=1600,k=Math.min(1,M/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
+   const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);ok(c.toDataURL('image/jpeg',.82))};
+  im.src=fr.result};fr.readAsDataURL(file)})}
+async function elegida(file){const v=$('#fv'),b=$('#fbtn');if(!file)return;
+ if(!/^image\//.test(file.type)){msg('Elige un archivo de imagen.');return}
+ try{msg('Preparando foto…',true);const d=await comprimir(file);FOTO=d.split(',')[1];
+  v.style.display='block';v.innerHTML='<img src="'+d+'" alt="Vista previa">';b.textContent='🔄 Cambiar foto';msg('')}
+ catch(e){FOTO='';msg(e.message)}}
+async function enviar(){const sd=$('#fsd').value,n=$('#fn').value.trim(),d=$('#fds').value.trim(),dt=$('#fd').value;
  if(!sd){msg('Elige tu sede.');return}if(!n){msg('Escribe tu nombre o «Anónimo».');return}
- if(!f){msg('Pega el enlace de tu foto.');return}if(!okUrl(f)){msg('El enlace debe empezar con http:// o https://');return}
- msg('Enviando',true);busy(true);
- try{await api({accion:'enviar',sede:sd,nombre:n,foto:f,descripcion:d,fecha_foto:dt});
+ if(!FOTO){msg('Elige la foto que quieres subir.');return}
+ msg('Subiendo foto… (puede tardar unos segundos)',true);busy(true);
+ try{await api({accion:'enviar',sede:sd,nombre:n,datos:FOTO,descripcion:d,fecha_foto:dt});FOTO='';
   modal(X+'<h3>¡Gracias por compartir! </h3><p class="ds">Tu foto quedó <b>pendiente de aprobación</b>. Cuando un supervisor la apruebe, aparecerá en el álbum.</p><div class="fx"><button class="bt" data-a="cerrar">Listo</button></div>','#0f766e')}
  catch(e){busy(false);msg(e.message)}}
-function ver(id){const x=ITEMS.find(y=>y.id==id);if(!x)return;const fd=fchip(x.fecha_foto);
- modal(X+'<h3>'+E(x.nombre||'Anónimo')+'</h3><div class="ds">'+E(x.sede)+(fd?' · '+E(fd):'')+'</div><img class="big" src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer">'+(x.descripcion?'<p style="white-space:pre-wrap;margin:10px 0 0">'+E(x.descripcion)+'</p>':'')
-  +'<div class="fx"><a class="bt w" style="text-decoration:none" href="'+E(x.foto)+'" target="_blank" rel="noopener noreferrer">Abrir en pantalla completa</a></div>',colDe(x.sede),true)}
-
-/* ===== Master ===== */
-function loginM(){modal(X+'<h3>Acceso master</h3><label>Clave<div class="pw"><input id="mp" type="password" autocomplete="new-password" placeholder="Clave"><button type="button" data-a="ojo">Ver</button></div></label><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="entrar">Ingresar</button></div>','#111827');setTimeout(()=>{const i=$('#mp');if(i)i.focus()},50)}
-async function entrar(){const v=$('#mp').value;if(!v){msg('Escribe la clave.');return}msg('Confirmando credenciales',true);busy(true);
- try{const j=await api({accion:'login',clave:v});TK=j.token;MSEDE=j.sede;try{sessionStorage.setItem('fo_tk',TK);sessionStorage.setItem('fo_ms',MSEDE)}catch(e){}cerrar();R()}
- catch(e){busy(false);msg(e.message)}}
-function salir(sil){if(TK&&!sil)api({accion:'logout',token:TK}).catch(()=>{});TK='';MSEDE='';try{sessionStorage.removeItem('fo_tk');sessionStorage.removeItem('fo_ms')}catch(e){}cerrar();R();if(sil)alert('Tu sesión master venció. Ingresa de nuevo.')}
-try{MSEDE=sessionStorage.getItem('fo_ms')||''}catch(e){}
-
-async function pend(){modal(X+'<h3>Fotos pendientes</h3><div class="st ld">Cargando</div>','#111827',true);
- try{const j=await api({accion:'pendientes',token:TK});PEND=j.items||[];pintaPend()}catch(e){modal(X+'<h3>Pendientes</h3><p class="ds">'+E(e.message)+'</p>','#111827')}}
-function pintaPend(){modal(X+'<h3>Fotos pendientes ('+PEND.length+')</h3>'+(PEND.length?PEND.map(x=>{const fd=fchip(x.fecha_foto);return '<div class="pn"><div class="hd"><span class="chip" style="--c:'+colDe(x.sede)+';padding:2px 10px;font-size:12px">'+E(x.sede)+'</span>'+E(x.nombre||'Anónimo')+' · '+E(x.fecha)+'</div>'
- +'<img src="'+E(x.foto)+'" alt="" style="width:100%;max-width:280px;border-radius:8px;display:block" referrerpolicy="no-referrer" onerror="this.outerHTML=\'<div class=ds>No se pudo cargar la foto (revisa el enlace).</div>\'">'
- +(x.descripcion?'<div class="tx" style="margin-top:6px">'+E(x.descripcion)+'</div>':'')+(fd?'<div class="ds">Fecha de la foto: '+E(fd)+'</div>':'')
- +'<div class="fx"><button class="bt r" data-a="borrar" data-id="'+E(x.id)+'">Borrar</button><button class="bt" data-a="aprobar" data-id="'+E(x.id)+'">Aprobar</button></div></div>'}).join(''):'<p class="ds">No hay fotos pendientes. </p>')+'<div id="mm" class="ms"></div>','#111827',true)}
-async function aprobar(id){msg('Aprobando',true);busy(true);
- try{await api({accion:'aprobar',token:TK,id});PEND=PEND.filter(x=>x.id!=id);pintaPend();cargar(true)}catch(e){busy(false);msg(e.message)}}
-const buscaId=id=>PEND.find(x=>x.id==id)||ITEMS.find(x=>x.id==id);
-function borrar(id){const x=buscaId(id);if(!x)return;
- modal(X+'<h3>¿Borrar esta foto?</h3><p class="ds">Foto de <b>'+E(x.nombre||'Anónimo')+'</b>'+(x.descripcion?': «'+E(x.descripcion.slice(0,80))+'»':'')+'</p><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt r" data-a="borrar2" data-id="'+E(id)+'">Sí, borrar</button></div>','#e11d48')}
-function borrar2(id){modal(X+'<h3>Última confirmación</h3><p class="ds">Esta foto se eliminará <b>definitivamente</b> y no se podrá recuperar. ¿Seguro que deseas borrarla?</p><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">No, conservar</button><button class="bt r" data-a="borrar3" data-id="'+E(id)+'">Borrar definitivamente</button></div>','#9f1239')}
-async function borrar3(id){msg('Borrando',true);busy(true);
- try{await api({accion:'borrar',token:TK,id});PEND=PEND.filter(x=>x.id!=id);ITEMS=ITEMS.filter(x=>x.id!=id);cerrar();R()}catch(e){busy(false);msg(e.message)}}
-
 document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t){if(e.target.id=='md')cerrar();return}
  const a=t.dataset.a,id=t.dataset.id;
  if(a=='fil'){FIL=t.dataset.v;R()}
- else if(a=='reint')cargar();else if(a=='nueva')nueva();else if(a=='enviar')enviar();else if(a=='cerrar')cerrar();
+ else if(a=='reint')cargar();else if(a=='nueva')nueva();else if(a=='enviar')enviar();else if(a=='elegir')$('#fi').click();else if(a=='cerrar')cerrar();
  else if(a=='mus')toggleMus();else if(a=='master')loginM();else if(a=='entrar')entrar();else if(a=='salir')salir();
  else if(a=='ojo'){const i=$('#mp');i.type=i.type=='password'?'text':'password'}
  else if(a=='ver')ver(id);else if(a=='pend')pend();else if(a=='aprobar')aprobar(id);else if(a=='borrar')borrar(id);else if(a=='borrar2')borrar2(id);else if(a=='borrar3')borrar3(id)});
 document.addEventListener('input',e=>{if(e.target.id=='ff')prev();if(e.target.id=='q'){Q=e.target.value.trim();pintaMuro()}if(e.target.id=='fh')$('#ct').textContent=e.target.value.length});
-document.addEventListener('change',e=>{if(e.target.id=='ord'){ORD=e.target.value;pintaMuro()}});
+document.addEventListener('change',e=>{if(e.target.id=='fi')elegida(e.target.files[0]);if(e.target.id=='ord'){ORD=e.target.value;pintaMuro()}});
 document.addEventListener('keydown',e=>{if(e.key=='Escape')cerrar();if(e.key=='Enter'&&e.target.id=='mp')$('[data-a="entrar"]').click()});
 /* ===== Música de piano suave (sintetizada, sin archivos) ===== */
 const CH=[[261.63,329.63,392,523.25,392,329.63],[246.94,293.66,392,493.88,392,293.66],[220,261.63,329.63,440,329.63,261.63],[174.61,220,261.63,349.23,261.63,220]],ML=[659.25,587.33,523.25,698.46];
