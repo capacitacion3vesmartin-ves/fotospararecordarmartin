@@ -71,6 +71,7 @@ h1{margin:10px 0 4px;text-align:center;font:700 clamp(32px,7vw,52px)/1.05 Fredok
 @media(max-width:900px){.bl{position:static;transform:none;width:100%;justify-content:flex-start}.bt2{width:100%}}
 @media(max-width:860px){.wall{column-count:2}}
 @media(max-width:600px){.cta{width:100%}.wall{column-count:1}.sg{grid-template-columns:1fr}.bn{font-size:13px}}
+.vw{background:#fff;padding:12px 12px 8px;border-radius:3px;margin-top:6px}.vw img{display:block;width:100%;max-height:68vh;object-fit:contain;background:#e8eef0}.mc.wd .x{z-index:2}
 </style></head><body>
 <div class="bn"><div class="bl"><a id="cl" class="vb" href="https://capacitacion3vesmartin-ves.github.io/campuscapacitacion/">← Volver al campus</a><span id="bi"></span></div><span class="bt2">FOTOS DEL RECUERDO</span></div>
 <div id="app"></div>
@@ -86,7 +87,7 @@ const $=s=>document.querySelector(s),E=s=>String(s==null?'':s).replace(/[&<>"']/
 const okUrl=u=>/^https?:\/\//i.test(String(u||'').trim());
 const hash=s=>[...String(s)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
 let SEDE=null,ITEMS=[],PEND=[],ST='idle',TK='',MSEDE='';
-try{TK=sessionStorage.getItem('fo_tk')||''}catch(e){}
+try{TK=sessionStorage.getItem('fo_tk')||'';MSEDE=sessionStorage.getItem('fo_sd')||''}catch(e){}
 const MASTER=()=>!!TK;
 const sedeCol=()=>(SEDES.find(s=>s[0]==SEDE)||[0,'#0f766e'])[1];
 const colDe=n=>(SEDES.find(s=>s[0]==n)||[0,'#555'])[1];
@@ -105,6 +106,7 @@ const IS='width="16" height="16" fill="none" stroke="currentColor" stroke-width=
 const TRS='<svg viewBox="0 0 24 24" '+IS+'><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/></svg>';
 const PEN='<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
 const MSV='<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="vertical-align:-3px;margin-right:4px"><path d="M9 3v11.3A3.5 3.5 0 1 0 11 17.5V7h6V3z"/></svg>';
+const GRID='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>';
 const nrm=t=>String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 let FIL='Todas',ORD='rec',Q='';
 function ts(x){const m=/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}))?/.exec(x.fecha||'');if(m)return new Date(+m[3],+m[2]-1,+m[1],+(m[4]||0),+(m[5]||0)).getTime();const d=Date.parse(x.fecha);return isNaN(d)?0:d}
@@ -129,7 +131,7 @@ function R(){const a=$('#app');$('#mbtn').style.display=MASTER()?'none':'flex';
  +'<div class="tb"><button class="cta" data-a="nueva"><span class="pen">'+PEN+'</span><span>Sube tu foto<small>Comparte un momento para recordar</small></span></button></div>'+(MASTER()?barra():'');
  if(ST=='load')h+='<div class="st ld">Cargando fotos</div>';
  else if(ST=='err')h+='<div class="st">No se pudieron cargar las fotos.<br><br><button class="bt" data-a="reint">Reintentar</button></div>';
- else h+='<div class="ctl">'+[['Todas','#0f766e']].concat(SEDES).map(s=>'<button class="fc'+(FIL==s[0]?' on':'')+'" style="--c:'+s[1]+'" data-a="fil" data-v="'+E(s[0])+'">'+E(s[0])+'</button>').join('')
+ else h+='<div class="ctl">'+[['Todas','#0f766e']].concat(SEDES).map(s=>'<button class="fc'+(FIL==s[0]?' on':'')+'" style="--c:'+s[1]+'" data-a="fil" data-v="'+E(s[0])+'">'+(s[0]=='Todas'?GRID:'')+E(s[0])+'</button>').join('')
   +'<div class="rt"><select id="ord"><option value="rec"'+(ORD=='rec'?' selected':'')+'>Más recientes</option><option value="ant"'+(ORD=='ant'?' selected':'')+'>Más antiguas</option></select>'
   +'<div class="srch"><input id="q" type="search" placeholder="Buscar foto…" value="'+E(Q)+'" autocomplete="off"></div></div></div><div id="cnt"></div><div id="wall"></div>';
  a.innerHTML=h;pintaMuro();ajb()}
@@ -175,6 +177,34 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t
 document.addEventListener('input',e=>{if(e.target.id=='ff')prev();if(e.target.id=='q'){Q=e.target.value.trim();pintaMuro()}if(e.target.id=='fh')$('#ct').textContent=e.target.value.length});
 document.addEventListener('change',e=>{if(e.target.id=='fi')elegida(e.target.files[0]);if(e.target.id=='ord'){ORD=e.target.value;pintaMuro()}});
 document.addEventListener('keydown',e=>{if(e.key=='Escape')cerrar();if(e.key=='Enter'&&e.target.id=='mp')$('[data-a="entrar"]').click()});
+/* ===== Modo master ===== */
+function loginM(){modal(X+'<h3>Modo master</h3><p class="ds">Ingresa la clave de tu sede para aprobar o borrar fotos.</p>'
+ +'<label>Clave</label><div class="pw"><input id="mp" type="password" autocomplete="off" placeholder="Clave de master"><button type="button" data-a="ojo" aria-label="Mostrar clave">👁</button></div>'
+ +'<div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="entrar">Entrar</button></div>','#111827');
+ setTimeout(()=>{const i=$('#mp');if(i)i.focus()},50)}
+async function entrar(){const cl=$('#mp').value;
+ if(!cl){msg('Escribe la clave.');return}
+ msg('Verificando…',true);busy(true);
+ try{const j=await api({accion:'login',clave:cl});TK=j.token||'';MSEDE=j.sede||'';
+  if(!TK)throw new Error('El servidor no devolvió la sesión.');
+  try{sessionStorage.setItem('fo_tk',TK);sessionStorage.setItem('fo_sd',MSEDE)}catch(e){}
+  cerrar();R()}
+ catch(e){busy(false);msg(e.message)}}
+function salir(){TK='';MSEDE='';try{sessionStorage.removeItem('fo_tk');sessionStorage.removeItem('fo_sd')}catch(e){}cerrar();R()}
+function ver(id){const x=ITEMS.find(i=>i.id==id)||PEND.find(i=>i.id==id);if(!x)return;const fd=fchip(x.fecha_foto);
+ modal(X+'<div class="vw"><img src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer">'
+ +'<div class="cap">'+(x.descripcion?'<p>'+E(x.descripcion)+'</p>':'')+'<div class="by">'+E(x.nombre||'Anónimo')+'<small>'+E(x.sede)+(fd?' · '+E(fd):'')+'</small></div></div></div>',colDe(x.sede),true)}
+async function pend(){modal(X+'<h3>Pendientes</h3><div class="st ld">Cargando</div>','#111827',true);
+ try{const j=await api({accion:'pendientes',token:TK,sede:MSEDE});PEND=j.items||[];
+  modal(X+'<h3>Pendientes de aprobación ('+PEND.length+')</h3>'+(PEND.length?PEND.map(x=>'<div class="pn"><div class="hd"><span>'+E(x.nombre||'Anónimo')+' · '+E(x.sede)+'</span></div>'
+   +'<img class="big" src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer" style="margin-top:0">'+(x.descripcion?'<div class="tx">'+E(x.descripcion)+'</div>':'')
+   +'<div class="fx"><button class="bt r" data-a="borrar" data-id="'+E(x.id)+'">Rechazar</button><button class="bt" data-a="aprobar" data-id="'+E(x.id)+'">Aprobar</button></div></div>').join(''):'<p class="ds">No hay fotos pendientes.</p>'),'#111827',true)}
+ catch(e){modal(X+'<h3>Pendientes</h3><div class="ms">'+E(e.message)+'</div>','#111827')}}
+async function aprobar(id){try{await api({accion:'aprobar',token:TK,id:id});await cargar(true);pend()}catch(e){alert(e.message)}}
+function borrar(id){modal(X+'<h3>¿Borrar esta foto?</h3><p class="ds">Esta acción no se puede deshacer.</p><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt r" data-a="borrar2" data-id="'+E(id)+'">Sí, borrar</button></div>','#e11d48')}
+async function borrar2(id){msg('Borrando…',true);busy(true);
+ try{await api({accion:'borrar',token:TK,id:id});cerrar();await cargar(true)}catch(e){busy(false);msg(e.message)}}
+function borrar3(id){borrar2(id)}
 /* ===== Música de piano suave (sintetizada, sin archivos) ===== */
 const CH=[[261.63,329.63,392,523.25,392,329.63],[246.94,293.66,392,493.88,392,293.66],[220,261.63,329.63,440,329.63,261.63],[174.61,220,261.63,349.23,261.63,220]],ML=[659.25,587.33,523.25,698.46];
 let AC=null,OUT=null,NT=0,ST2=0,TM=null,MON=false,MOFF=false;
